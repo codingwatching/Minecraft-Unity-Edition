@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{3489F483-90A0-8998-305A-96D52159F933}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,8 +56,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\server\player\InputManagement.cs" />
-    <Compile Include="Assets\Scripts\client\setting\KeyBinding.cs" />
+    <Compile Include="Assets\Scripts\server\player\InputManager.cs" />
+    <Compile Include="Assets\Scripts\client\setting\KeyBindingFromJson.cs" />
+    <Compile Include="Assets\Scripts\server\player\BlockPlacement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
