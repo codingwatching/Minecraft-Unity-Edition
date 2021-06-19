@@ -1,0 +1,11 @@
+{
+	//Movement
+	"Walk_Forwards":"W",
+	"Walk_Backwards":"S",
+	"Strafe_Left":"A",
+	"Strafe_Right":"D",
+	"Jump":"Space",
+	"Sneak":"LeftControl",
+	"Sprint":"LeftShift"
+
+}
