@@ -8,4 +8,4 @@
 ## Functions already implemented:
 1. Read data from .json files  √
 2. Player moves  √
-3. Player jumps and floats  -
+3. Player jumps  -
