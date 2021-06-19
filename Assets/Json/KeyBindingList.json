@@ -1,0 +1,40 @@
+{
+  "KeyBindings":[
+    {
+      "name":"break_block",
+      "key":"mouse 0"
+    },
+    {
+      "name":"place_block", 
+      "key":"mouse 1"
+    },
+    {
+      "name":"get_block",
+      "key":"mouse 2"
+    },
+    {
+      "name":"move_forward",
+      "key":"w"
+    },
+    {
+      "name":"move_backward",
+      "key":"s"
+    },
+    {
+      "name":"move_left",
+      "key":"a"
+    },
+    {
+      "name":"move_right",
+      "key":"d"
+    },
+    {
+      "name":"move_up",
+      "key":"space"
+    },
+    {
+      "name":"move_down",
+      "key":"left ctrl"
+    }
+  ]
+}

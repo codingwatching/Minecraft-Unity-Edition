@@ -57,7 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\server\player\InputManager.cs" />
-    <Compile Include="Assets\Scripts\client\setting\KeyBindingFromJson.cs" />
+    <Compile Include="Assets\Scripts\client\setting\KeyBinding.cs" />
+    <Compile Include="Assets\Scripts\server\player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\client\setting\ReadDataFromJson.cs" />
+    <Compile Include="Assets\Scripts\server\player\TagList.cs" />
     <Compile Include="Assets\Scripts\server\player\BlockPlacement.cs" />
   </ItemGroup>
   <ItemGroup>

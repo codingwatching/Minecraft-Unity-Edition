@@ -2,28 +2,30 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public GameObject blockPrefabs;
-    //private readonly KeyBindingFromJson keyBindingFromJson;
-     BlockPlacement bp ;
+    #region Singleton
+    PlayerMovement playerMovement;
+    KeyBinding keyBinding;
 
-    public void Update()
+    private void Awake()
     {
-        Vector3 playerPos = new Vector3();
-        playerPos = gameObject.transform.position;
-        if (Input.anyKey) {
-
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                bp.RemoveBlock(playerPos);
-            }
-            if (Input.GetKey(KeyCode.Mouse1))
-            {
-                bp.SetBlock(playerPos, blockPrefabs);
-            }
-            
-        }
+        keyBinding = new KeyBinding();
+        playerMovement = new PlayerMovement();
     }
+    #endregion
 
+    private void Update()
+    {
+        if (!Input.anyKey) playerMovement.Movement("");     //reset the velocity to '0'(zero) of the player
+      
+        if (Input.GetKeyDown(keyBinding.KeyBindings("move_forward")))   playerMovement.Movement("move_forward");
+        if (Input.GetKeyDown(keyBinding.KeyBindings("move_backward"))) playerMovement.Movement("move_backward");
+        if (Input.GetKeyDown(keyBinding.KeyBindings("move_left")))   playerMovement.Movement("move_left");
+        if (Input.GetKeyDown(keyBinding.KeyBindings("move_right")))   playerMovement.Movement("move_right");
 
+        if (Input.GetKeyDown(keyBinding.KeyBindings("move_up")))   playerMovement.Movement("move_up");
+
+        if (Input.GetKeyDown(keyBinding.KeyBindings("move_down")))   playerMovement.Movement("move_down");
+        
+    }
 
 }
