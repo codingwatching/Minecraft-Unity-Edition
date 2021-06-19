@@ -3,3 +3,8 @@
 Library/
 Logs/
 obj/
+Minecraft.sln
+Minecraft Unity Edition.sln
+Assembly-CSharp.csproj
+.vsconfig
+UserSettings/
