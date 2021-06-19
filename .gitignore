@@ -1,0 +1,14 @@
+
+.vs/
+Library/
+Logs/
+obj/
+Minecraft.sln
+Minecraft Unity Edition.sln
+Assembly-CSharp.csproj
+.vsconfig
+UserSettings/
+Assets/
+Packages/
+ProjectSettings/
+.gitattributes
