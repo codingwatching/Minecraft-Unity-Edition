@@ -8,6 +8,3 @@ Minecraft Unity Edition.sln
 Assembly-CSharp.csproj
 .vsconfig
 UserSettings/
-Assets/
-Packages/
-ProjectSettings/
