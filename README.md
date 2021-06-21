@@ -7,5 +7,8 @@
 
 ## Functions already implemented:
 1. Read data from .json files  √
+
+   but I changed to Unity YAML  √
 2. Player moves  √
 3. Player jumps  -
+4. Block textures  -a few
