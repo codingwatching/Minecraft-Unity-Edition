@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class BlockPlacement : MonoBehaviour
 {
-    public GameObject blockPrefabs;
     public Camera mainCamera;
 
     public KeyBinding keyBinding;
     public Tweaks tweaks;
+    public Inventory inventory;
 
     TagList tagList;
+    GameObject block;
 
     #region Singleton
     private void Awake()
@@ -20,9 +21,11 @@ public class BlockPlacement : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(keyBinding.use))
         {
-            SetBlock(transform.position, blockPrefabs);
+            block = inventory.toolbar[inventory.select_item - 1];
+            SetBlock(transform.position, block);
         }
         if (Input.GetKeyDown(keyBinding.attack))    
         {
@@ -39,7 +42,7 @@ public class BlockPlacement : MonoBehaviour
             Vector3 blockPos = hitInfo.collider.transform.position;
             if ((playerPos - blockPos).sqrMagnitude <= Mathf.Pow(tweaks.max_oparate_distance, 2))  // calculate the distnce between player and block
             {
-                PlaceBlock(blockPos, blockPrefabs, hitInfo);
+                PlaceBlock(blockPos, block, hitInfo);
             }
         }
     }
@@ -59,6 +62,7 @@ public class BlockPlacement : MonoBehaviour
             }
         }
     }
+
 
     public void replaceBlock()
     {

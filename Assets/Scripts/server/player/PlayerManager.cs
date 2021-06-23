@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -6,13 +7,16 @@ public class PlayerManager : MonoBehaviour
     public KeyBinding keyBinding;
     public Tweaks tweaks;
 
-    CharacterController characterController;
+    TagList tagList;
 
-    //Gravity
-    Vector3 gVelocity;
+    CharacterController cc;
+
+    //Jump
+    bool isGround;
 
     //Movement
     float zMove, xMove, yMove;
+    bool canFreeMove;
 
     //ViewRotation
     float horizontalRotate, verticalRotate;
@@ -21,7 +25,8 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        tagList = new TagList();
+        cc = GetComponent<CharacterController>();
     }
 
     
@@ -30,44 +35,37 @@ public class PlayerManager : MonoBehaviour
 
         bool freeCamera = false;
         GameObject playerOrCamera = freeCamera ? mainCamera : gameObject;
-        bool isGround = characterController.collisionFlags == CollisionFlags.Below;
 
-        #region Gravity
-        if (isGround && gVelocity.y < 0)
-        {
-            gVelocity.y = -1.0f;
-        }
-
-        gVelocity.y -= tweaks.gravity * Time.fixedDeltaTime;
-        characterController.Move(gVelocity * Time.fixedDeltaTime);
-
-        #endregion
+        Cursor.lockState = CursorLockMode.Locked;   //mouse lock
 
         #region Jump
         if (Input.GetKey(keyBinding.jump) && isGround)
         {
-            gVelocity.y = tweaks.player_jump_force;
         }
-
 
         #endregion
 
         #region Movement
 
-        float moveSpeed = 0.3f * tweaks.player_move_speed * Time.fixedDeltaTime;
-        xMove = Input.GetAxis("MoveX") * moveSpeed;
-        yMove = Input.GetAxis("MoveY") * moveSpeed;
-        zMove = Input.GetAxis("MoveZ") * moveSpeed;
+        float moveSpeed = 1.5f * tweaks.player_move_speed * Time.deltaTime;
 
-        moveVelocity = transform.right * xMove + transform.up * yMove + transform.forward * zMove;
-        characterController.Move(moveVelocity);
+        if (Input.GetKey(keyBinding.sprint))
+        {
+            moveSpeed *= 2;
+        }   
+        xMove = Input.GetAxis("MoveX") * moveSpeed;
+        zMove = Input.GetAxis("MoveZ") * moveSpeed;
+        yMove = Input.GetAxis("MoveY") * moveSpeed;
+
+        cc.Move(transform.right * xMove + transform.forward * zMove + transform.up * yMove);
 
         #endregion
 
         #region ViewRotation
 
-        horizontalRotate = 60 *Input.GetAxis("Mouse X") * tweaks.horizontal_sensitivity * Time.fixedDeltaTime;
-        verticalRotate = 60 * Input.GetAxis("Mouse Y") * tweaks.vertical_sensitivity * Time.fixedDeltaTime;
+        float sensitivity = 400 * tweaks.sensitivity * Time.deltaTime;
+        horizontalRotate = Input.GetAxis("Mouse X") * sensitivity * tweaks.horizontal_sensitivity;
+        verticalRotate = Input.GetAxis("Mouse Y") * sensitivity * tweaks.vertical_sensitivity;
 
         yRotation -= verticalRotate;
         yRotation = Mathf.Clamp(yRotation, -90, 90);
@@ -77,6 +75,17 @@ public class PlayerManager : MonoBehaviour
 
         #endregion
 
+
     }
 
+    IEnumerator freeMoveTiggerIntervalTime(float intervalTime)
+    {
+        yield return null;
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+    }
 }

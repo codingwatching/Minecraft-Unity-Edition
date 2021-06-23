@@ -9,6 +9,7 @@ public class Tweaks : ScriptableObject
     public float gravity;
 
     [Header("---- ViewRotate ----")]
+    public float sensitivity;
     public float horizontal_sensitivity;
     public float vertical_sensitivity;
 
