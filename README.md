@@ -11,4 +11,5 @@
    but I changed to Unity YAML  √
 2. Player moves  √
 3. Player jumps  -
-4. Block textures  -a few
+4. Block place/destroy/pick
+5. Block textures  -a few
