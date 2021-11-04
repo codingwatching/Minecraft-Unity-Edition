@@ -18,7 +18,7 @@ public class JsonFileData
 #endregion
 
 public class ReadDataFromJson : ScriptableObject
-{   
+{
     public List<JsonFileData> jsonData = new List<JsonFileData>();
 
     public string ReadFromJson(string jsonFileName)

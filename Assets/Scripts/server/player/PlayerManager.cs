@@ -1,91 +1,65 @@
-using System.Collections;
+using server.setting;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+namespace server.player
 {
-    public GameObject mainCamera;
-    public KeyBinding keyBinding;
-    public Tweaks tweaks;
-
-    TagList tagList;
-
-    CharacterController cc;
-
-    //Jump
-    bool isGround;
-
-    //Movement
-    float zMove, xMove, yMove;
-    bool canFreeMove;
-
-    //ViewRotation
-    float horizontalRotate, verticalRotate;
-    float yRotation;
-    Vector3 moveVelocity;
-
-    void Start()
-    {
-        tagList = new TagList();
-        cc = GetComponent<CharacterController>();
-    }
-
+    public class PlayerManager : MonoBehaviour{
     
-    private void Update()
-    {
+        public Tweaks tweaks;
+        public KeyBinding keyBinding;
+        public Camera mainCamera;
 
-        bool freeCamera = false;
-        GameObject playerOrCamera = freeCamera ? mainCamera : gameObject;
+        private CharacterController _cc;
+        
+        //Move
+        private float _xMove, _zMove, _yMove;
+        
+        //ViewRotation
+        private float _horizontalRotate, _verticalRotate;
+        private float _yRotation;
 
-        Cursor.lockState = CursorLockMode.Locked;   //mouse lock
-
-        #region Jump
-        if (Input.GetKey(keyBinding.jump) && isGround)
+        void Start()
         {
+            _cc = GetComponent<CharacterController>();
         }
 
-        #endregion
-
-        #region Movement
-
-        float moveSpeed = 1.5f * tweaks.player_move_speed * Time.deltaTime;
-
-        if (Input.GetKey(keyBinding.sprint))
+    
+        private void Update()
         {
-            moveSpeed *= 2;
-        }   
-        xMove = Input.GetAxis("MoveX") * moveSpeed;
-        zMove = Input.GetAxis("MoveZ") * moveSpeed;
-        yMove = Input.GetAxis("MoveY") * moveSpeed;
+            Cursor.lockState = CursorLockMode.Locked;   //mouse lock
+        
+          
+            #region Movement
 
-        cc.Move(transform.right * xMove + transform.forward * zMove + transform.up * yMove);
+            float moveSpeed = 1.5f * tweaks.playerMoveSpeed * Time.deltaTime;
 
-        #endregion
+            if (Input.GetKey(keyBinding.sprint))
+            {
+                moveSpeed *= 2;
+            }   
+            _xMove = Input.GetAxis("MoveX") * moveSpeed;
+            _zMove = Input.GetAxis("MoveZ") * moveSpeed;
+            _yMove = Input.GetAxis("MoveY") * moveSpeed;
 
-        #region ViewRotation
+            _cc.Move(transform.right * _xMove + transform.forward * _zMove + transform.up * _yMove);
 
-        float sensitivity = 400 * tweaks.sensitivity * Time.deltaTime;
-        horizontalRotate = Input.GetAxis("Mouse X") * sensitivity * tweaks.horizontal_sensitivity;
-        verticalRotate = Input.GetAxis("Mouse Y") * sensitivity * tweaks.vertical_sensitivity;
+            #endregion
+            
+            #region ViewRotation
 
-        yRotation -= verticalRotate;
-        yRotation = Mathf.Clamp(yRotation, -90, 90);
+            float sensitivity = 400 * tweaks.sensitivity * Time.deltaTime;
+            _horizontalRotate = Input.GetAxis("Mouse X") * sensitivity * tweaks.horizontalSensitivity;
+            _verticalRotate = Input.GetAxis("Mouse Y") * sensitivity * tweaks.horizontalSensitivity;
 
-        transform.Rotate(Vector3.up * horizontalRotate);
-        mainCamera.transform.localRotation = Quaternion.Euler(yRotation, 0, 0);
+            _yRotation -= _verticalRotate;
+            _yRotation = Mathf.Clamp(_yRotation, -90, 90);
 
-        #endregion
+            transform.Rotate(Vector3.up * _horizontalRotate);
+            mainCamera.transform.localRotation = Quaternion.Euler(_yRotation, 0, 0);
 
-
-    }
-
-    IEnumerator freeMoveTiggerIntervalTime(float intervalTime)
-    {
-        yield return null;
-    }
-
-
-    void OnCollisionEnter(Collision collision)
-    {
-
+            #endregion
+        }
+    
+    
     }
 }

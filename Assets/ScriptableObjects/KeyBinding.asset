@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb18b7a22acd24499b30ecc349decaf, type: 3}
   m_Name: KeyBinding
   m_EditorClassIdentifier: 
-  move_forward: w
-  move_back: s
+  moveForward: w
+  moveBack: s
   move_left: a
   move_right: d
   move_up: space

@@ -1,6 +1,9 @@
-public class TagList
+namespace server
 {
-    public string block = "block";
-    public string ground = "ground";
-    public string player = "player";
+    public class TagList
+    {
+        public string Block = "Block";
+        public string Ground = "Ground";
+        public string Player = "Player";
+    }
 }

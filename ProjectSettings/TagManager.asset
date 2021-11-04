@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - block
-  - ground
+  - Block
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
   - 

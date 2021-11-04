@@ -4,8 +4,8 @@ using UnityEngine;
 public class KeyBinding : ScriptableObject
 {
     [Header("---- Movement ----")]
-    public string move_forward;
-    public string move_back;
+    public string moveForward;
+    public string moveBack;
     public string move_left;
     public string move_right;
     public string move_up;
