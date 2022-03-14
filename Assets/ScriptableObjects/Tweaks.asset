@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd0a67d3d06bff4382495e14029f75e, type: 3}
   m_Name: Tweaks
   m_EditorClassIdentifier: 
-  playerMoveSpeed: 1
-  playerJumpForce: 0
-  gravity: 0
+  moveSpeed: 1
+  jumpForce: 100
+  gravity: 9.8
+  maxJumpHeight: 1.25
   sensitivity: 1
   horizontalSensitivity: 1
   verticalSensitivity: 1

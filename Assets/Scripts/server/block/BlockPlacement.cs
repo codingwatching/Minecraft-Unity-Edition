@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using server;
 using server.setting;
 using UnityEngine;
@@ -14,11 +14,14 @@ public class BlockPlacement : MonoBehaviour
     TagList tagList;
     GameObject block;
 
+    Vector3 screenCenterPoint = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 0);
+
     #region Singleton
     private void Awake()
     {
         tagList = new TagList();
     }
+
     #endregion
 
     private void Update()
@@ -39,30 +42,25 @@ public class BlockPlacement : MonoBehaviour
 
     void SetBlock(Vector3 playerPos, GameObject block)
     {
-        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)); // screen center
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, tweaks.maxOperateDistance)) {
+        Ray ray = mainCamera.ScreenPointToRay(screenCenterPoint); // screen center
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, tweaks.maxOperateDistance) && WithinOperateRange(playerPos, hitInfo)) {
             Vector3 blockPos = hitInfo.collider.transform.position;
-            if ((playerPos - blockPos).sqrMagnitude <= Mathf.Pow(tweaks.maxOperateDistance, 2))  // calculate the distance between player and block
-            {
-                PlaceBlock(blockPos, block, hitInfo);
-            }
+            PlaceBlock(blockPos, block, hitInfo);
         }
     }
 
     void RemoveBlock(Vector3 playerPos)
     {
-        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray = mainCamera.ScreenPointToRay(screenCenterPoint); // screen center
         if (Physics.Raycast(ray, out RaycastHit hitInfo, tweaks.maxOperateDistance))
         {
             Vector3 blockPos = hitInfo.collider.transform.position;
-            if ((playerPos - blockPos).sqrMagnitude <= Mathf.Pow(tweaks.maxOperateDistance, 2))    // calculate the distnce between player and block
+            if (WithinOperateRange(playerPos, hitInfo) && hitInfo.collider.CompareTag(tagList.Block))
             {
-                if (hitInfo.collider.CompareTag(tagList.Block))
-                {
-                    Destroy(hitInfo.collider.gameObject);
-                }
+                Destroy(hitInfo.collider.gameObject);
             }
         }
+        
     }
 
 
@@ -76,8 +74,14 @@ public class BlockPlacement : MonoBehaviour
         blockPos.x = Mathf.Floor(blockPos.x) + 0.5f;
         blockPos.y = Mathf.Floor(blockPos.y) + 0.5f;
         blockPos.z = Mathf.Floor(blockPos.z) + 0.5f;
-
+        
         Instantiate(gameObject, blockPos + hitInfo.normal, Quaternion.identity);
     }
 
+    Boolean WithinOperateRange(Vector3 playerPos,RaycastHit hitInfo)
+    {
+        Vector3 blockPos = hitInfo.collider.transform.position;
+        return (playerPos - blockPos).sqrMagnitude <= Mathf.Pow(tweaks.maxOperateDistance, 2);
+    }
+    
 }

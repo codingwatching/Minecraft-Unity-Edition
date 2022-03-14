@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7344330788803000491}
   m_Layer: 0
   m_Name: birch_leaves
-  m_TagString: block
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

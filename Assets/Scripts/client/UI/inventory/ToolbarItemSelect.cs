@@ -114,7 +114,6 @@ namespace client.UI.inventory
                     {
                         frameCount = i + 1;
                     }
-                
                 }
             }
         }

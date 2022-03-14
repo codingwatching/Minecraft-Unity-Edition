@@ -6,9 +6,10 @@ namespace server.setting
     public class Tweaks : ScriptableObject
     {
         [Header("---- Movement ----")]
-        public float playerMoveSpeed;
-        public float playerJumpForce;
+        public float moveSpeed;
+        public float jumpForce;
         public float gravity;
+        public float maxJumpHeight;
 
         [Header("---- ViewRotate ----")]
         public float sensitivity;

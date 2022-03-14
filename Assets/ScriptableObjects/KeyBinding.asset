@@ -14,28 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForward: w
   moveBack: s
-  move_left: a
-  move_right: d
-  move_up: space
-  move_down: left ctrl
+  moveLeft: a
+  moveRight: d
+  moveUp: space
+  moveDown: left ctrl
   jump: space
   sprint: left shift
   sneak: left ctrl
   attack: mouse 0
   use: mouse 1
   pick: mouse 2
-  drop_item: q
+  dropItem: 
   inventory: e
-  swap_item: f
-  save_toolbar: '*'
-  load_toolbar: left alt
-  player_list: tab
+  swapItem: 
+  saveToolbar: 
+  loadToolbar: 
+  playerList: 
   chat: enter
   command: /
-  zoom_view: c
+  zoomView: 
   minimap: m
-  fullmap: n
+  fullMap: 
   advancement: l
   screenshot: f2
   fullscreen: f11
   perspective: v
+  debugHUD: f3

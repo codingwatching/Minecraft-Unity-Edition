@@ -6,10 +6,10 @@ public class KeyBinding : ScriptableObject
     [Header("---- Movement ----")]
     public string moveForward;
     public string moveBack;
-    public string move_left;
-    public string move_right;
-    public string move_up;
-    public string move_down;
+    public string moveLeft;
+    public string moveRight;
+    public string moveUp;
+    public string moveDown;
     public string jump;
     public string sprint;
     public string sneak;
@@ -20,29 +20,30 @@ public class KeyBinding : ScriptableObject
     public string pick;
 
     [Header("---- Inventory ----")]
-    public string drop_item;
+    public string dropItem;
     public string inventory;
-    public string swap_item;
+    public string swapItem;
 
     [Header("---- Toolbar ----")]
-    public string save_toolbar;
-    public string load_toolbar;
+    public string saveToolbar;
+    public string loadToolbar;
 
     [Header("---- Multiplayer ----")]
-    public string player_list;
+    public string playerList;
     public string chat;
     public string command;
 
     [Header("---- View ----")]
-    public string zoom_view;
+    public string zoomView;
 
     [Header("---- Map ----")]
     public string minimap;
-    public string fullmap;
+    public string fullMap;
 
     [Header("---- Miscellaneous ----")]
     public string advancement;
     public string screenshot;
     public string fullscreen;
     public string perspective;
+    public string debugHUD;
 }
